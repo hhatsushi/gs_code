@@ -1,9 +1,13 @@
 <?php
+
+session_start();
 include "funcs.php";
+sessChk();
+
 $pdo = db_con();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_user_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -15,12 +19,12 @@ if ($status == false) {
     //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $view .= '<p>';
-        $view .= '<a href="user_detail.php?id='.$result["id"].'">';
-        $view .= $result["name"] ." ". "," . "ID".$result["lid"];
+        $view .= '<a href="bm_detail.php?id='.$result["id"].'">';
+        $view .= $result["book_name"] . "," . $result["author"];
         $view .= '</a>';
 
         $view .= ' ';
-        $view .= '<a href="user_delete.php?id='.$result["id"].'">';
+        $view .= '<a href="bm_delete.php?id='.$result["id"].'">';
         $view .= '[削除]';
         $view .= '</a>';
 
@@ -37,7 +41,7 @@ if ($status == false) {
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>管理ユーザ一覧</title>
+<title>BMデータ一覧</title>
 <link rel="stylesheet" href="css/range.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>div{padding: 10px;font-size:16px;}</style>
@@ -48,7 +52,8 @@ if ($status == false) {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">管理USER情報修正画面</a>
+      <a class="navbar-brand" href="bm_insert_view.php">[ブックマーク登録画面へ]</a>
+      <a class="navbar-brand" href="select.php">[ユーザー一覧画面へ]</a>
       </div>
     </div>
   </nav>

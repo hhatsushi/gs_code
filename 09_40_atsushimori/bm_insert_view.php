@@ -1,8 +1,19 @@
+<?php
+
+session_start();
+include "funcs.php";
+sessChk();
+
+$pdo = db_con();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ブックマーク</title>
+  <title>ブックマーク登録</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style>div{padding: 10px;font-size:16px;}</style>
 </head>
@@ -12,7 +23,7 @@
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="bm_select.php">データ一覧</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="bm_select.php">[BMデータ一覧画面へ]</a></div>
     </div>
   </nav>
 </header>
@@ -22,7 +33,7 @@
 <form method="post" action="bm_insert.php">
   <div class="jumbotron">
    <fieldset>
-    <legend>読書メモ</legend>
+    <legend>読書メモ入力</legend>
      <label>書籍名：<input type="text" name="book_name"></label><br>
      <label>著者名：<input type="text" name="author"></label><br>
      <label>url：<input type="text" name="url"></label><br>
@@ -33,6 +44,7 @@
   </div>
 </form>
 <!-- Main[End] -->
+
 
 
 </body>

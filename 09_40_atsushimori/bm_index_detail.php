@@ -1,4 +1,5 @@
 <?php
+
 $id =$_GET["id"];
 // echo $id;
 // --------------------------------
@@ -8,7 +9,7 @@ include "funcs.php";
 $pdo = db_con();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_user_table where id =:id");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_table where id =:id");
 $stmt->bindValue(":id",$id,PDO::PARAM_INT);
 $status = $stmt->execute();
 
@@ -19,13 +20,9 @@ if ($status == false) {
 } else {
     //Selectデータの数だけ自動でループしてくれる
     //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
-    // while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //     $view .= '<p>';
-    //     $view .= '<a href="detail.php?id='.$result["id"].'">';
-    //     $view .= $result["name"] . "," . $result["email"] . "<br>";
-    //     $view .= '</a>';
-    //     $view .= '</p>';
-    // }
+
+
+
 $row = $stmt->fetch();
 
 
@@ -41,7 +38,7 @@ $row = $stmt->fetch();
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>管理ユーザー情報更新</title>
+  <title>詳細データ</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <style>div{padding: 10px;font-size:16px;}</style>
 </head>
@@ -51,27 +48,27 @@ $row = $stmt->fetch();
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="user_select.php">データ一覧</a></div>
+    <div class="navbar-header"><h1>詳細データ</h1></div>
     </div>
   </nav>
 </header>
 <!-- Head[End] -->
-
 <!-- Main[Start] -->
-<form method="post" action="user_update.php">
-  <div class="jumbotron">
+
+  <div>
    <fieldset>
-    <legend>更新</legend>
-     <label>名前：<input type="text" name="name" value="<?php echo $row["name"]; ?>"></label><br>
-     <label>ログインID：<input type="text" name="lid" value="<?php echo $row["lid"]; ?>"></label><br>
-     <label>ログインパスワード：<input type="text" name="lpw" value="<?php echo $row["lpw"]; ?>"></label><br>
-     <label>管理者区分：<input type="text" name="kanri_flg" value="<?php echo $row["kanri_flg"]; ?>"></label><br>
+    <legend></legend>
+    <label>書籍名：<?php echo $row["book_name"]; ?></label><br>
+     <label>著者名：<?php echo $row["author"]; ?></label><br>
+     <label>url：<?php echo $row["url"]; ?></label><br>
+     <label><?php echo $row["comment"]; ?></label><br>
+     <label>オススメ度：<?php echo $row["recommended"]; ?></label><br>
      <input type ="hidden" name ="id" value ="<?php echo $id; ?>">
-     <input type="submit" value="登録">
     </fieldset>
   </div>
-</form>
+
 <!-- Main[End] -->
+
 
 
 </body>

@@ -1,11 +1,17 @@
 <?php
+session_start();
+include "funcs.php";
+sessChk();
+
+$pdo = db_con();
+
+
 $id =$_GET["id"];
 // echo $id;
 // --------------------------------
 // 以下、select.phpをコピーしてきました
 // --------------------------------
-include "funcs.php";
-$pdo = db_con();
+
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_bm_table where id =:id");

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2019 年 1 月 31 日 14:04
+-- Generation Time: 2019 年 2 月 07 日 08:47
 -- サーバのバージョン： 5.6.21
 -- PHP Version: 5.6.3
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `gs_user_table` (
 `id` int(12) NOT NULL,
   `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `lid` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
-  `lpw` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `lpw` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `kanri_flg` int(1) NOT NULL,
   `life_flg` int(1) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `gs_user_table` (
 --
 
 INSERT INTO `gs_user_table` (`id`, `name`, `lid`, `lpw`, `kanri_flg`, `life_flg`) VALUES
-(1, '森淳之', '1111111', 'aaaaaaa', 1, 0),
+(1, '森淳之', '1111111', '$2y$10$qB0ccmq9pmUhNvDp/lROzuI2Ri2WZx4HVJxBW5QpMXd2tBEji12N6', 1, 0),
 (2, '花田太郎', '2222222', 'bbbbbbb', 0, 0),
-(3, '山田次郎', '3333333', 'cccccccc', 0, 0),
+(3, '山田次郎', '3333333', 'ccccccc', 0, 0),
 (4, '佐藤三郎', '4444444', 'ddddddd', 0, 0),
 (5, 'ロバート木下', '5555555', 'eeeeeee', 0, 0),
 (6, 'デビル山崎', '6666666', 'fffffff', 0, 0),
